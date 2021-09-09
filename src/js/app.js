@@ -5,8 +5,8 @@
 var netStatsApp = angular.module('netStatsApp', ['netStatsApp.filters', 'netStatsApp.directives', 'ngStorage']);
 
 netStatsApp.run(function($rootScope) {
-	$rootScope.networkName = networkName || 'Ethereum';
-	$rootScope.faviconPath = faviconPath || '/favicon.ico';
+	$rootScope.networkName = networkName || 'Classzz';
+	$rootScope.faviconPath = faviconPath || '/logo.svg';
 });
 
 

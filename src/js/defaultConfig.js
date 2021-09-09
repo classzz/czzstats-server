@@ -1,2 +1,2 @@
-var networkName = 'Ethereum';
-var faviconPath = '/favicon.ico';
+var networkName = 'Classzz';
+var faviconPath = '/logo.svg';
