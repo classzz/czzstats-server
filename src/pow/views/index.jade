@@ -104,6 +104,16 @@ block content
                   //- span.small-value {{ blockPropagationAvg | blockPropagationFilter : '' }}
                   histogram.big-details.d3-blockpropagation(data="blockPropagationChart")
 
+              div.col-xs-3.stat-holder.xpull-right
+                div.col-xs-4.big-info.chart.xdouble-chart
+                  span.small-title last blocks miners
+                  div.blocks-holder(ng-repeat='miner in miners track by miner.miner', data-toggle="tooltip", data-placement="right", data-original-title="{{miner.blocks}}")
+                    div.block-count(class="{{miner.blocks | minerBlocksClass : 'text-'}}") {{miner.blocks}}
+                    //- div.small-title-miner {{miner.miner | minerNameFilter : miner.name}}
+                    div.small-title-miner {{miner.miner}}
+                    minerblock(blocks="{{miner.blocks}}")
+                    div.clearfix
+
               div.col-xs-3.stat-holder
                 div.big-info.chart.text-info
                   //- i.icon-uncle
@@ -123,15 +133,6 @@ block content
                   //- span.small-value {{ lastDifficulty | number }}
                   sparkchart.big-details.spark-difficulty(data="{{lastGasLimit.join(',')}}")
 
-        div.col-xs-4.stat-holder.xpull-right
-          div.big-info.chart.xdouble-chart
-            span.small-title last blocks miners
-            div.blocks-holder(ng-repeat='miner in miners track by miner.miner', data-toggle="tooltip", data-placement="right", data-original-title="{{miner.blocks}}")
-              div.block-count(class="{{miner.blocks | minerBlocksClass : 'text-'}}") {{miner.blocks}}
-              //- div.small-title-miner {{miner.miner | minerNameFilter : miner.name}}
-              div.small-title-miner {{miner.miner}}
-              minerblock(blocks="{{miner.blocks}}")
-              div.clearfix
 
 
           div.col-xs-4.stat-holder.map-holder
