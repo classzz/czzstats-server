@@ -18,7 +18,6 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 	$scope.avgBlockTime = 0;
 	$scope.blockPropagationAvg = 0;
 	$scope.avgHashrate = 0;
-	$scope.uncleCount = 0;
 	$scope.bestStats = {};
 
 	$scope.lastGasLimit = _.fill(Array(MAX_BINS), 2);
@@ -32,7 +31,6 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 	$scope.nodes = [];
 	$scope.map = [];
 	$scope.blockPropagationChart = [];
-	$scope.uncleCountChart = _.fill(Array(MAX_BINS), 2);
 	$scope.coinbases = [];
 
 	$scope.latency = 0;
@@ -318,13 +316,6 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 
 				break;
 
-			case "uncleCount":
-				$scope.uncleCount = data[0] + data[1];
-				data.reverse();
-				$scope.uncleCountChart = data;
-
-				break;
-
 			case "charts":
 				if( !_.isEqual($scope.avgBlockTime, data.avgBlocktime) )
 					$scope.avgBlockTime = data.avgBlocktime;
@@ -344,13 +335,6 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 				if( !_.isEqual($scope.blockPropagationChart, data.propagation.histogram) ) {
 					$scope.blockPropagationChart = data.propagation.histogram;
 					$scope.blockPropagationAvg = data.propagation.avg;
-				}
-
-				data.uncleCount.reverse();
-
-				if( !_.isEqual($scope.uncleCountChart, data.uncleCount) && data.uncleCount.length >= MAX_BINS ) {
-					$scope.uncleCount = data.uncleCount[data.uncleCount.length-2] + data.uncleCount[data.uncleCount.length-1];
-					$scope.uncleCountChart = data.uncleCount;
 				}
 
 				if( !_.isEqual($scope.transactionDensity, data.transactions) && data.transactions.length >= MAX_BINS )
